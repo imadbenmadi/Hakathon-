@@ -6,13 +6,7 @@ function App() {
     <NavBar />
     <Outlet />
   </div>;
-    return (
-        <div className=" ">
-            hello
-            <NavBar />
-            <Outlet />
-        </div>
-    );
+    
 }
 
 export default App;
