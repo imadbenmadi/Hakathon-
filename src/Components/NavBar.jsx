@@ -11,7 +11,9 @@ function NavBar() {
     const [showMenu, setShowMenu] = useState(false);
     const [isSmall, setIsSmall] = useState(false);
      const { isAuth } = useAppContext();
-    
+    useEffect(() => {
+        console.log("isAuth : ", isAuth);
+    }, [isAuth]);
     useEffect(() => {
         const handleResize = () => {
             setIsSmall(window.innerWidth <= 768);
