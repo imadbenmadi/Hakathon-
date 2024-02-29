@@ -23,6 +23,10 @@ function BookTicket() {
                 "https://reasonably-thorough-monitor.ngrok-free.app/Api/TicketTech/",
                 values
             );
+            if (response.status !== 200) {
+                throw new Error("حدث خطأ ما");
+            }
+            
             // Add your booking logic here
             Swal.fire("تم الحجز!", "تم حجز التذكرة بنجاح!", "success");
             Navigate("/Tickets/Tech");
