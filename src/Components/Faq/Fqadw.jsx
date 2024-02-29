@@ -8,9 +8,9 @@ const Fqadw = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="rounded-[3px]  my-5 mx-auto bg-zinc-100 py-5 px-20 duration-500">
+    <div className="rounded-[3px] max-md:mx-2 max-md:px-2 my-5 mx-auto bg-zinc-100 py-5 md:px-20 duration-500">
       <button
-        className={`w-full flex items-center  justify-end gap-4 hover:bg-gray-300 px-7 py-[17px] bg-zinc-100 rounded-[3px]${
+        className={`w-full flex items-center  justify-end gap-4 hover:bg-gray-300 md:px-7 md:py-[17px]  bg-zinc-100 rounded-[3px]${
           isOpen ? "rounded-[3px]" : ""
         }`}
         onClick={toggleAccordion}
@@ -20,7 +20,7 @@ const Fqadw = () => {
             isOpen ? "rotate-90" : ""
           }`}
         >
-          <img src={arrowdonw2} alt="up" className="" />
+          <img src={arrowdonw2} alt="up" />
         </div>
         <div className="text-right text-zinc-700 text-lg">
           كيف اقوم باعادة استعادة تدوير المودام ؟
