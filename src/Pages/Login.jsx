@@ -31,7 +31,7 @@ function Login() {
                 Navigate("/");
             } else if (response.status == 401) {
                 Swal.fire(
-                    "Email already exists",
+                    "HomeNumber already exists",
                     `Username or Password isn't correct  `,
                     "error"
                 );
@@ -68,21 +68,17 @@ function Login() {
             <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg  ">
                 <Formik
                     initialValues={{
-                        Email: "",
+                        HomeNumber: "",
                         Password: "",
                     }}
                     validate={(values) => {
                         const errors = {};
 
-                        // Validate Email
-                        if (!values.Email) {
-                            errors.Email = "email is Required";
-                        } else if (
-                            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                                values.Email
-                            )
-                        ) {
-                            errors.Email = "Invalid Email address";
+                        // Validate HomeNumber
+                        if (!values.HomeNumber) {
+                            errors.HomeNumber = "Number is Required";
+                        } else if (!/^\d+$/.test(values.HomeNumber)) {
+                            errors.HomeNumber = "Invalid Number";
                         }
 
                         // Validate Password
@@ -111,13 +107,13 @@ function Login() {
                                     </span>
                                 </div>
                                 <Field
-                                    type="Email"
-                                    name="Email"
+                                    type="HomeNumber"
+                                    name="HomeNumber"
                                     disabled={isSubmitting}
                                     className="border border-gray_white px-2 py-1 rounded  shadow-sm w-full"
                                 />
                                 <ErrorMessage
-                                    name="Email"
+                                    name="HomeNumber"
                                     component="div"
                                     style={errorInputMessage}
                                 />
