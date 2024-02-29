@@ -1,5 +1,6 @@
 import React from 'react'
 import Tickets_tech from './Tickets_tech'
+import Tickets_center from './Tickets_center'
 
 function Tickets() {
   const [selected, setSelected] = React.useState('tech')
@@ -13,7 +14,7 @@ function Tickets() {
       {selected == 'tech' ? (
         <Tickets_tech />
       ) : (
-        <div>center</div>
+        <Tickets_center />
       )}
     </div>
   )
