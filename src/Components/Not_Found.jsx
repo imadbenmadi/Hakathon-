@@ -1,14 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
-export const Not_Found = (props) => {
+function Not_Found() {
   return (
     <div>Not_Found</div>
   )
 }
 
-const mapStateToProps = (state) => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Not_Found)
+export default Not_Found
