@@ -34,9 +34,13 @@ function BookTicket() {
             <div className="border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
                 <Formik
                     initialValues={{
-                        center: "",
-                        title: "",
-                        description: "",
+                        center: "", // اختر المركز
+                        title: "", // عنوان المشكلة
+                        description: "", // وصف المشكلة
+                        first_name: "", // اسم الشخص الأول
+                        last_name: "", // اسم الشخص الأخير
+                        phone_number: "", // رقم الهاتف
+                        address: "", // العنوان
                     }}
                     validate={(values) => {
                         const errors = {};
@@ -112,10 +116,11 @@ function BookTicket() {
                             </div>
                             <button
                                 type="submit"
-                                className={` ${isSubmitting
-                                    ? "bg-gray_white text-gray"
-                                    : " bg-green text-white"
-                                    } w-fit m-auto px-4 py-2 rounded font-semibold `}
+                                className={` ${
+                                    isSubmitting
+                                        ? "bg-gray_white text-gray"
+                                        : " bg-green text-white"
+                                } w-fit m-auto px-4 py-2 rounded font-semibold `}
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? "جارٍ التحميل..." : "حجز"}

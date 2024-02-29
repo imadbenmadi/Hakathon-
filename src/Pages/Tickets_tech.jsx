@@ -11,7 +11,6 @@ function Tickets_tech() {
     const { isAuth } = useAppContext();
     const Navigate = useNavigate();
     
-   
     useEffect(() => {
         if(!isAuth){
             Navigate("/Login");
