@@ -29,7 +29,7 @@ function Home() {
         className="w-[48%] max-md:w-screen  max-md:px-5   "
       >
         <div className="w-full text-right max-md:text-3xl  my-5 leading-30  text-blue-300 text-5xl font-extrabold font-['Cairo'] ">
-          مشروع تحسين خدمات المستخدمين{" "}
+          مشروع تحسين خدمة الزبائن{" "}
         </div>
         <div className=" h-fit  max-md:py-5 text-right max-md:text-xl text-black text-opacity-50 text-2xl font-medium font-['Cairo'] leading-10">
           يهدف هذا المسروع الى تعزيز العلاقة بين الشركة والذي يقوم بدوره على
