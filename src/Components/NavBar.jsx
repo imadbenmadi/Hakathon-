@@ -75,13 +75,13 @@ function NavBar() {
             {/* links */}
             <div className="flex justify-center items-center gap-14">
                 {Links.map((link, index) => (
-                    <a
+                    <Link
                         key={index}
-                        href={link.path}
+                        to={`${link.path}`}
                         className="text-xl text-gray-600 hover:text-blue-500 transition-all duration-300"
                     >
                         {link.name}
-                    </a>
+                    </Link>
                 ))}
             </div>
             {/* auth */}
