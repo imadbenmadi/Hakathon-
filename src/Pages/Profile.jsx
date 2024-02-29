@@ -3,7 +3,7 @@ import avatar from "../assets/images/avatar.png";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { useNavigate } from "react-router";
-
+import { useAppContext } from "../Context/AppContext";
 function Profile() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
