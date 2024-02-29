@@ -22,6 +22,13 @@ function BookTicket() {
 
     async function handleBooking(values, { setSubmitting }) {
         try {
+            const response = await Axios.post(
+                "https://reasonably-thorough-monitor.ngrok-free.app/Api/Post_FeedBack/",
+                values
+            );
+            if (response.status !== 200) {
+                throw new Error("حدث خطأ ما");
+            }
             // Add your booking logic here
             Swal.fire("تم الحجز!", "تم حجز التذكرة بنجاح!", "success");
             Navigate("/Tickets/Tech");
@@ -42,8 +49,8 @@ function BookTicket() {
                 <Formik
                     initialValues={{
                         center: "",
-                        title: "",
-                        description: "",
+                        Title: "",
+                        Description: "",
                     }}
                     validate={(values) => {
                         const errors = {};
@@ -52,12 +59,12 @@ function BookTicket() {
                             errors.center = "يرجى اختيار المركز";
                         }
 
-                        if (!values.title) {
-                            errors.title = "عنوان المشكلة مطلوب";
+                        if (!values.Title) {
+                            errors.Title = "عنوان المشكلة مطلوب";
                         }
 
-                        if (!values.description) {
-                            errors.description = "وصف المشكلة مطلوب";
+                        if (!values.Description) {
+                            errors.Description = "وصف المشكلة مطلوب";
                         }
 
                         return errors;
@@ -93,12 +100,12 @@ function BookTicket() {
                                 <div>عنوان المشكلة</div>
                                 <Field
                                     type="text"
-                                    name="title"
+                                    name="Title"
                                     disabled={isSubmitting}
                                     className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
                                 />
                                 <ErrorMessage
-                                    name="title"
+                                    name="Title"
                                     component="div"
                                     className="text-red-600 font-semibold"
                                 />
@@ -107,12 +114,12 @@ function BookTicket() {
                                 <div>وصف المشكلة</div>
                                 <Field
                                     as="textarea"
-                                    name="description"
+                                    name="Description"
                                     disabled={isSubmitting}
                                     className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
                                 />
                                 <ErrorMessage
-                                    name="description"
+                                    name="Description"
                                     component="div"
                                     className="text-red-600 font-semibold"
                                 />
