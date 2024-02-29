@@ -121,7 +121,7 @@ function Login() {
                         <Form className="  flex flex-col text-sm md:text-lg md:mx-5 gap-4">
                             <div>
                                 <div>
-                                    رقم الهاتف المحلي{" "}
+                                    رقم هاتف منزلك 
                                     <span className=" text-red-600 font-semibold">
                                         *
                                     </span>

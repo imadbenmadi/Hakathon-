@@ -4,8 +4,12 @@ import { useState } from "react";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { useAppContext } from "../Context/AppContext";
 
 function BookTicket() {
+    const { isAuth, first_name, last_name, home_number } = useAppContext();
+    
+
     const [centers] = useState([
         "اتصلات الجزائر فرع ورقلة",
         "اتصلات الجزائر فرع وهران",
@@ -34,9 +38,13 @@ function BookTicket() {
             <div className="border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
                 <Formik
                     initialValues={{
-                        center: "",
-                        title: "",
-                        description: "",
+                        center: "", // اختر المركز
+                        title: "", // عنوان المشكلة
+                        description: "", // وصف المشكلة
+                        first_name: first_name, // اسم الشخص الأول
+                        last_name: last_name, // اسم الشخص الأخير
+                        phone_number: home_number, // رقم الهاتف
+                        address: "", // العنوان
                     }}
                     validate={(values) => {
                         const errors = {};
@@ -110,12 +118,27 @@ function BookTicket() {
                                     className="text-red-600 font-semibold"
                                 />
                             </div>
+                            <div>
+                                <div>عنوان المنزل </div>
+                                <Field
+                                    type="textarea"
+                                    name="address"
+                                    disabled={isSubmitting}
+                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none"
+                                />
+                                <ErrorMessage
+                                    name="address"
+                                    component="div"
+                                    className="text-red-600 font-semibold"
+                                />
+                            </div>
                             <button
                                 type="submit"
-                                className={` ${isSubmitting
-                                    ? "bg-gray_white text-gray"
-                                    : " bg-green text-white"
-                                    } w-fit m-auto px-4 py-2 rounded font-semibold `}
+                                className={` ${
+                                    isSubmitting
+                                        ? "bg-gray_white text-gray"
+                                        : " bg-green text-white"
+                                } w-fit m-auto px-4 py-2 rounded font-semibold `}
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? "جارٍ التحميل..." : "حجز"}

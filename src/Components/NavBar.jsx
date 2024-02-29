@@ -3,21 +3,28 @@ import Logo from "../assets/images/download-removebg-preview.png";
 import { useNavigate } from "react-router";
 import { CiMenuBurger } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../Context/AppContext";
+import { FaUser } from "react-icons/fa";
+
 function NavBar() {
     const [show, setShow] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [isSmall, setIsSmall] = useState(false);
+    const { isAuth } = useAppContext();
     useEffect(() => {
-        const handelResize = () => {
+        console.log("isAuth : ", isAuth);
+    }, [isAuth]);
+    useEffect(() => {
+        const handleResize = () => {
             setIsSmall(window.innerWidth <= 768);
         };
-        window.addEventListener("resize", handelResize);
-        handelResize();
+        window.addEventListener("resize", handleResize);
+        handleResize();
         return () => {
-            window.removeEventListener("resize", handelResize);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
-    console.log(show)
+    console.log(show);
     const navigate = useNavigate();
     const Links = [
         {
@@ -37,58 +44,80 @@ function NavBar() {
             path: "/NewProduct",
         },
     ];
-    return isSmall ?
-        (
-            <div className="flex justify-between items-center p-3">
-                <img src={Logo} alt="" className="w-28" />
-                <CiMenuBurger size={50} className="cursor-pointer ml-auto" onClick={() => setShowMenu(!showMenu)} />
-                {showMenu && (
-                    <div>
-                        <div className="fixed flex justify-center items-center flex-col gap-10 shadow-md top-20 left-0 bg-white w-full h-auto p-5 z-50">
-                            {Links.map((link, index) => (
-                                <Link
-                                    key={index}
-                                    to={link.path}
-                                    className="text-xl text-gray-600 hover:text-blue-500 transition-all duration-300"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </div>
-                        <div className="w-screen h-screen absolute top-0 left-0 z-30" onClick={() => setShowMenu(false)}></div>
-                    </div>
-                )}
-            </div>
-        ) : (
-            <div className="w-full h-[10%] bg-white fixed flex justify-between items-center top-0 left-0 z-30 p-5 shadow-lg">
-                {/* logo */}
-                <div className="flex justify-start items-center gap-3">
+    return (
+        <>
+            {isSmall ? (
+                <div className="flex justify-between items-center p-3">
                     <img src={Logo} alt="" className="w-28" />
-                    <p></p>
+                    <CiMenuBurger
+                        size={50}
+                        className="cursor-pointer ml-auto"
+                        onClick={() => setShowMenu(!showMenu)}
+                    />
+                    {showMenu && (
+                        <div>
+                            <div className="fixed flex justify-center items-center flex-col gap-10 shadow-md top-20 left-0 bg-white w-full h-auto p-5 z-50">
+                                {Links.map((link, index) => (
+                                    <Link
+                                        key={index}
+                                        to={link.path}
+                                        className="text-xl text-gray-600 hover:text-blue-500 transition-all duration-300"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ))}
+                            </div>
+                            <div
+                                className="w-screen h-screen absolute top-0 left-0 z-30"
+                                onClick={() => setShowMenu(false)}
+                            ></div>
+                        </div>
+                    )}
                 </div>
-                {/* links */}
-                <div className="flex justify-center items-center gap-14">
-                    {Links.map((link, index) => (
-                        <a
-                            key={index}
-                            href={link.path}
-                            className="text-xl text-gray-600 hover:text-blue-500 transition-all duration-300"
-                        >
-                            {link.name}
-                        </a>
-                    ))}
-                </div>
-                {/* auth */}
-                <div>
-                    <button
-                        onClick={() => navigate("/Login")}
-                        className="w-32 p-3 bg-blue-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105"
+            ) : (
+                <div className="w-full bg-white fixed flex justify-between items-center top-0 left-0 z-30 p-5 shadow-lg">
+                    <Link
+                        to={"/"}
+                        className="flex justify-start items-center gap-3"
                     >
-                        Login
-                    </button>
+                        <img src={Logo} alt="" className="w-28" />
+                        <p></p>
+                    </Link>
+                    <div className="flex justify-center items-center gap-14">
+                        {Links.map((link, index) => (
+                            <Link
+                                key={index}
+                                to={`${link.path}`}
+                                className="text-xl text-gray-600 hover:text-blue-500 transition-all duration-300"
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
+                    </div>
+                    {!isAuth && (
+                        <div>
+                            <button
+                                onClick={() => navigate("/Login")}
+                                className="w-32 p-3 bg-blue-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105"
+                            >
+                                Login
+                            </button>
+                        </div>
+                    )}
+                    {isAuth && (
+                        <div>
+                            <button
+                                onClick={() => navigate("/Profile")}
+                                className="w-32 p-3 text-gray text-3xl rounded-[8px] transition-all duration-300 hover:scale-105"
+                            >
+                                <FaUser />
+                            </button>
+                        </div>
+                    )}
                 </div>
-            </div>
-        )
+            )}
+        </>
+    );
 }
 
 export default NavBar;
