@@ -19,7 +19,7 @@ function Register() {
     ) {
         try {
             let response = await Axios.post(
-                "https://backend.skate-consult.com/Register",
+                "https://reasonably-thorough-monitor.ngrok-free.app/Auth/Sign_Up/",
                 values,
                 {
                     withCredentials: true,
@@ -97,7 +97,7 @@ function Register() {
                     </div>
 
                     <div className=" m-auto text-center pt-1 text-lg font-semibold text-gray ">
-                        اتصالات الجزائر دائما اقرب 
+                        اتصالات الجزائر دائما اقرب
                     </div>
                     {/* input fields */}
                     <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg  ">
@@ -178,20 +178,6 @@ function Register() {
                                 } else if (values.Password.length < 8) {
                                     errors.Password =
                                         "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
-                                }
-
-                                // Validate Age
-                                if (!values.Age) {
-                                } else if (
-                                    !/^\d+$/.test(values.Age) ||
-                                    values.Age <= 0
-                                ) {
-                                    errors.Age = "العمر غير صالح";
-                                }
-
-                                // Validate Gender
-                                if (!values.Gender) {
-                                    errors.Gender = "اجباري";
                                 }
                                 return errors;
                             }}
@@ -357,49 +343,7 @@ function Register() {
                                             style={errorInputMessage}
                                         />
                                     </div>
-                                    <div className=" flex gap-10">
-                                        <div>
-                                            <div>
-                                                الجنس{" "}
-                                                <span className=" text-red-600 font-semibold">
-                                                    *
-                                                </span>
-                                            </div>
-                                            <Field
-                                                as="select"
-                                                name="Gender"
-                                                disabled={isSubmitting}
-                                                className="border border-gray_white px-2 py-1 rounded shadow-sm"
-                                            >
-                                                {/* Add your select options here */}
-                                                <option value="male">
-                                                    ذكر
-                                                </option>
-                                                <option value="female">
-                                                    أنثى
-                                                </option>
-                                            </Field>
-                                            <ErrorMessage
-                                                name="Gender"
-                                                component="div"
-                                            />
-                                        </div>
-                                        <div>
-                                            <div>العمر </div>
-                                            <Field
-                                                type="number"
-                                                name="Age"
-                                                disabled={isSubmitting}
-                                                placeholder="0"
-                                                className=" w-[70px] border border-gray_white px-2 py-1 rounded  shadow-sm"
-                                            />
-                                            <ErrorMessage
-                                                name="Age"
-                                                component="div"
-                                                style={errorInputMessage}
-                                            />
-                                        </div>
-                                    </div>
+                                    
                                     <button
                                         type="submit"
                                         className={` ${
@@ -410,9 +354,9 @@ function Register() {
                                         disabled={isSubmitting}
                                     >
                                         {isSubmitting ? (
-                                            <div>loading</div>
+                                            <div>جار التحميل</div>
                                         ) : (
-                                            "Submit"
+                                            "تسجيل"
                                         )}
                                     </button>
                                 </Form>
@@ -431,14 +375,7 @@ function Register() {
                 </div>
             )}
 
-            {open_verify && (
-                <VerifyEmail
-                    Verify_id={Verify_id}
-                    Verify_email={Verify_email}
-                    Verify_Password={Verify_Password}
-                    rigester_Date={rigester_Date}
-                />
-            )}
+            
         </div>
     );
 }

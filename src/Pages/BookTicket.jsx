@@ -4,13 +4,15 @@ import { useState } from "react";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+
 function BookTicket() {
     const [centers] = useState([
-        "اتصلات الجزائر فرع ورقلة ",
-        "اتصلات الجزائر فرع وهران ",
+        "اتصلات الجزائر فرع ورقلة",
+        "اتصلات الجزائر فرع وهران",
         "اتصلات الجزائر فرع سطيف",
     ]);
     const Navigate = useNavigate();
+
     async function handleBooking(values, { setSubmitting }) {
         try {
             // Add your booking logic here
@@ -25,11 +27,11 @@ function BookTicket() {
 
     return (
         <div>
-            <div className=" m-auto text-center pt-5 text-2xl font-semibold text-blue ">
+            <div className="m-auto text-center pt-5 text-2xl font-semibold text-blue">
                 حجز تذكرة جديدة
             </div>
 
-            <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
+            <div className="border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
                 <Formik
                     initialValues={{
                         center: "",
@@ -44,11 +46,11 @@ function BookTicket() {
                         }
 
                         if (!values.title) {
-                            errors.title = "العنوان مطلوب";
+                            errors.title = "عنوان المشكلة مطلوب";
                         }
 
                         if (!values.description) {
-                            errors.description = "الوصف مطلوب";
+                            errors.description = "وصف المشكلة مطلوب";
                         }
 
                         return errors;
@@ -58,14 +60,14 @@ function BookTicket() {
                     }}
                 >
                     {({ isSubmitting }) => (
-                        <Form className=" flex flex-col text-sm md:text-lg md:mx-5 gap-4">
+                        <Form className="flex flex-col text-sm md:text-lg md:mx-5 gap-4">
                             <div>
                                 <div>اختر المركز</div>
                                 <Field
                                     as="select"
                                     name="center"
                                     disabled={isSubmitting}
-                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full text-end"
+                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
                                 >
                                     <option value="">اختر المركز</option>
                                     {centers.map((center, index) => (
@@ -77,11 +79,11 @@ function BookTicket() {
                                 <ErrorMessage
                                     name="center"
                                     component="div"
-                                    style={errorInputMessage}
+                                    className="text-red-600 font-semibold"
                                 />
                             </div>
                             <div>
-                                <div>عنوان المشكلة </div>
+                                <div>عنوان المشكلة</div>
                                 <Field
                                     type="text"
                                     name="title"
@@ -91,7 +93,7 @@ function BookTicket() {
                                 <ErrorMessage
                                     name="title"
                                     component="div"
-                                    style={errorInputMessage}
+                                    className="text-red-600 font-semibold"
                                 />
                             </div>
                             <div>
@@ -105,19 +107,19 @@ function BookTicket() {
                                 <ErrorMessage
                                     name="description"
                                     component="div"
-                                    style={errorInputMessage}
+                                    className="text-red-600 font-semibold"
                                 />
                             </div>
                             <button
                                 type="submit"
-                                className={` ${
+                                className={`${
                                     isSubmitting
                                         ? "bg-gray_white text-gray"
-                                        : " bg-green text-white"
-                                } w-fit m-auto px-4 py-2 rounded font-semibold `}
+                                        : "bg-green text-white"
+                                } w-fit m-auto px-4 py-2 rounded font-semibold`}
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? <div>جار التحميل</div> : "حجز"}
+                                {isSubmitting ? "جارٍ التحميل..." : "حجز"}
                             </button>
                         </Form>
                     )}
@@ -126,10 +128,5 @@ function BookTicket() {
         </div>
     );
 }
-
-const errorInputMessage = {
-    fontSize: "12px",
-    color: "red",
-};
 
 export default BookTicket;
