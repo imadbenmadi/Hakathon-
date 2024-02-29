@@ -31,7 +31,7 @@ function BookTicket() {
             }
             // Add your booking logic here
             Swal.fire("تم الحجز!", "تم حجز التذكرة بنجاح!", "success");
-            Navigate("/Tickets/Tech");
+            Navigate("/Tickets");
         } catch (error) {
             Swal.fire("خطأ!", `حدث خطأ ما: ${error.message}`, "error");
         }
