@@ -44,8 +44,7 @@ function NavBar() {
                 <CiMenuBurger size={50} className="cursor-pointer ml-auto" onClick={() => setShowMenu(!showMenu)} />
                 {showMenu && (
                     <div>
-
-                        <div className="fixed flex justify-center items-center flex-col gap-10 shadow-md top-20 left-0 bg-white w-full h-[30%] z-50">
+                        <div className="fixed flex justify-center items-center flex-col gap-10 shadow-md top-20 left-0 bg-white w-full h-auto p-5 z-50">
                             {Links.map((link, index) => (
                                 <Link
                                     key={index}
