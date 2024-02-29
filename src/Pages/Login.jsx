@@ -110,7 +110,7 @@ function Login() {
                                     type="HomeNumber"
                                     name="HomeNumber"
                                     disabled={isSubmitting}
-                                    className="border border-gray_white px-2 py-1 rounded  shadow-sm w-full"
+                                    className="border border-gray_white px-2 py-1 rounded  shadow-sm w-full outline-none"
                                 />
                                 <ErrorMessage
                                     name="HomeNumber"
@@ -145,7 +145,7 @@ function Login() {
                                         }
                                         name="Password"
                                         disabled={isSubmitting}
-                                        className="border border-gray_white px-2 py-1  rounded-s  shadow-sm w-full"
+                                        className="border border-gray_white px-2 py-1  rounded-s  shadow-sm w-full outline-none"
                                     />
                                 </div>
 
@@ -158,11 +158,10 @@ function Login() {
 
                             <button
                                 type="submit"
-                                className={` ${
-                                    isSubmitting
-                                        ? "bg-gray_white text-gray"
-                                        : " bg-green text-white"
-                                } w-fit m-auto px-4 py-2 rounded font-semibold `}
+                                className={` ${isSubmitting
+                                    ? "bg-gray_white text-gray"
+                                    : " bg-green text-white"
+                                    } w-fit m-auto px-4 py-2 rounded font-semibold `}
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? <div>loading</div> : "Submit"}
