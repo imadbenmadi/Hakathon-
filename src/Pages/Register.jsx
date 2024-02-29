@@ -189,6 +189,8 @@ function Register() {
                                 // Call your registration logic here
                                 setVerifyemail(values.email);
                                 setVerifypassword(values.password);
+                                console.log("values: ", values);
+
                                 await handleRegistration(values, {
                                     setSubmitting,
                                     setSucced_Register,
@@ -347,7 +349,25 @@ function Register() {
                                             style={errorInputMessage}
                                         />
                                     </div>
-
+                                    <div>
+                                        <div>
+                                            العنوان{" "}
+                                            <span className=" text-red-600 font-semibold">
+                                                *
+                                            </span>
+                                        </div>
+                                        <Field
+                                            type="text"
+                                            name="adress"
+                                            disabled={isSubmitting}
+                                            className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
+                                        />
+                                        <ErrorMessage
+                                            name="adress"
+                                            component="div"
+                                            style={errorInputMessage}
+                                        />
+                                    </div>
                                     <button
                                         type="submit"
                                         className={` ${
