@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import arrowdonw2 from "../../assets/images/akar-icons_chevron-right.svg";
+import { useInView } from "framer-motion";
 
 const Fqadw = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   const [isOpen, setIsOpen] = useState(false);
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="rounded-[3px] max-md:mx-2 max-md:px-2 my-5 mx-auto bg-zinc-100 py-5 md:px-20 duration-500">
+    <div
+      ref={ref}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? "none" : "translatex(50px)",
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.02s",
+      }}
+      className="rounded-[3px] max-md:mx-2 max-md:px-2 my-5 mx-auto bg-zinc-100 py-5 md:px-20 duration-500"
+    >
       <button
         className={`w-full flex items-center  justify-end gap-4 hover:bg-gray-300 md:px-7 md:py-[17px]  bg-zinc-100 rounded-[3px]${
           isOpen ? "rounded-[3px]" : ""

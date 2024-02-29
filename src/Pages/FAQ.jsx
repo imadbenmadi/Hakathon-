@@ -15,6 +15,14 @@ function FAQ() {
       <Fqadw />
       <Fqadw />
       <Fqadw />
+      <Fqadw />
+      <Fqadw />
+      <Fqadw />
+      <Fqadw />
+      <Fqadw />
+      <Fqadw />
+      <Fqadw />
+      <Fqadw />
     </div>
   );
 }

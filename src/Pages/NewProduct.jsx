@@ -17,6 +17,18 @@ function NewProduct() {
       <Prodect />
       <Prodect />
       <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
     </div>
   );
 }
