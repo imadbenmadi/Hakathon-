@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../assets/images/download-removebg-preview.png";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 function NavBar() {
     const navigate = useNavigate();
     const Links = [
@@ -31,13 +32,14 @@ function NavBar() {
             {/* links */}
             <div className="flex justify-center items-center gap-5">
                 {Links.map((link, index) => (
-                    <a
+                    <Link
+                        to={`${link.path}`}
                         key={index}
-                        href={link.path}
+                        // href={link.path}
                         className="text-xl text-gray-600 hover:text-blue-500 transition-all duration-300"
                     >
                         {link.name}
-                    </a>
+                    </Link>
                 ))}
             </div>
             {/* auth */}
