@@ -109,7 +109,7 @@ function Login() {
                                     </span>
                                 </div>
                                 <Field
-                                    type="Number"
+                                    type="text"
                                     name="home_number"
                                     disabled={isSubmitting}
                                     className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none"
