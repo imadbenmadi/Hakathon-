@@ -30,7 +30,10 @@ function Login() {
                 }
             );
             console.log(response);
-            if (response.status === 200) {
+            if (response.status !== 200) {
+                throw new Error("حدث خطأ ما");
+            }
+            else if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
 
                 store_login({
@@ -44,8 +47,8 @@ function Login() {
                 localStorage.setItem("token", response.data.user.token);
                 set_Auth(true);
                 Navigate("/");
-            } else if (response.status !== 200) {
-                setLoading(false);
+            } 
+            else {
                 Swal.fire("خطأ!", "حدث خطأ ما", "error");
             }
         } catch (error) {
