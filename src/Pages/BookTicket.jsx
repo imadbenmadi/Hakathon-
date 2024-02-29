@@ -4,8 +4,12 @@ import { useState } from "react";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { useAppContext } from "../Context/AppContext";
 
 function BookTicket() {
+    const { isAuth, first_name, last_name, home_number } = useAppContext();
+    
+
     const [centers] = useState([
         "اتصلات الجزائر فرع ورقلة",
         "اتصلات الجزائر فرع وهران",
@@ -37,9 +41,9 @@ function BookTicket() {
                         center: "", // اختر المركز
                         title: "", // عنوان المشكلة
                         description: "", // وصف المشكلة
-                        first_name: "", // اسم الشخص الأول
-                        last_name: "", // اسم الشخص الأخير
-                        phone_number: "", // رقم الهاتف
+                        first_name: first_name, // اسم الشخص الأول
+                        last_name: last_name, // اسم الشخص الأخير
+                        phone_number: home_number, // رقم الهاتف
                         address: "", // العنوان
                     }}
                     validate={(values) => {
@@ -110,6 +114,20 @@ function BookTicket() {
                                 />
                                 <ErrorMessage
                                     name="description"
+                                    component="div"
+                                    className="text-red-600 font-semibold"
+                                />
+                            </div>
+                            <div>
+                                <div>عنوان المنزل </div>
+                                <Field
+                                    type="textarea"
+                                    name="address"
+                                    disabled={isSubmitting}
+                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none"
+                                />
+                                <ErrorMessage
+                                    name="address"
                                     component="div"
                                     className="text-red-600 font-semibold"
                                 />
