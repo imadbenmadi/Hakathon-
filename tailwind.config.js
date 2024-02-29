@@ -11,10 +11,6 @@ export default {
                 green: "#078343",
                 
             },
-            fontFamily: {
-                customFont: ['"Outfit"', "sans-serif"],
-                // Add more custom font families as needed
-            },
         },
     },
     plugins: [],
