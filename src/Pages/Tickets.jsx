@@ -3,7 +3,7 @@ import Tickets_tech from './Tickets_tech'
 import Tickets_center from './Tickets_center'
 
 function Tickets() {
-  const [selected, setSelected] = React.useState('tech')
+  const [selected, setSelected] = React.useState("center");
   return (
     <div className=''>
       <h1 className='mx-auto text-center text-2xl font-bold'>Tickets</h1>
