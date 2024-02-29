@@ -9,7 +9,7 @@ import Register from "./Pages/Register";
 import Tickets from "./Pages/Tickets";
 import Tickets_item from "./Pages/Tickets_item";
 import Report from "./Pages/Report";
-
+import BookTicket from "./Pages/BookTicket";
 import Feedback from "./Pages/Feedback";
 import Profile from "./Pages/Profile";
 import Not_Found from "./Components/Not_Found";
@@ -24,6 +24,7 @@ const routes = createBrowserRouter([
             { path: "/Login", element: <Login /> },
             { path: "/Register", element: <Register /> },
             { path: "/Tickets/Tech", element: <Tickets /> },
+            { path: "/BookTicket", element: <BookTicket /> },
             { path: "/Tickets/Center", element: <Tickets /> },
             { path: "/Tickets/Center/:id", element: <Tickets_item /> },
             { path: "/Report", element: <Report /> },
