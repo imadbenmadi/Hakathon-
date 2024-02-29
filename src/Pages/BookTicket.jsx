@@ -19,6 +19,10 @@ function BookTicket() {
 
     async function handleBooking(values, { setSubmitting }) {
         try {
+            const response = await Axios.post(
+                "https://reasonably-thorough-monitor.ngrok-free.app/Api/TicketTech/",
+                values
+            );
             // Add your booking logic here
             Swal.fire("تم الحجز!", "تم حجز التذكرة بنجاح!", "success");
             Navigate("/Tickets/Tech");
