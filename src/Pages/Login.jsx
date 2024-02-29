@@ -27,7 +27,7 @@ function Login() {
                     validateStatus: () => true,
                 }
             );
-
+                console.log(response);
             if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
                 localStorage.setItem("token", response.data.token);
