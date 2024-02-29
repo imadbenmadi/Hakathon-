@@ -44,36 +44,16 @@ function Login() {
                 localStorage.setItem("token", response.data.user.token);
                 set_Auth(true);
                 Navigate("/");
-            } else if (response.status === 401) {
-                Swal.fire(
-                    "خطأ!",
-                    "اسم المستخدم أو كلمة المرور غير صحيحة",
-                    "error"
-                );
+            } else if (response.status !== 200) {
                 setLoading(false);
-            } else if (response.status === 409) {
-                Swal.fire("خطأ!", `${response.data.message} `, "error");
-                setLoading(false);
-            } else if (response.status === 500) {
-                Swal.fire("خطأ!", "خطأ في الخادم الداخلي", "error");
-                setLoading(false);
-            } else if (response.status === 429) {
-                Swal.fire(
-                    "خطأ!",
-                    "طلبات كثيرة جدًا، جرب مرة أخرى لاحقًا",
-                    "error"
-                );
-                setLoading(false);
-            } else {
                 Swal.fire("خطأ!", "حدث خطأ ما", "error");
-                setLoading(false);
             }
         } catch (error) {
-            Swal.fire("خطأ!", "حدث خطأ ما", "error");
             setLoading(false);
+            Swal.fire("خطأ!", "حدث خطأ ما", "error");
+        }finally{
+            setSubmitting(false);
         }
-
-        setSubmitting(false);
     }
 
     return (

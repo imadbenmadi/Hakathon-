@@ -22,7 +22,7 @@ function Tickets_tech() {
     };
     setTimeout(() => {
         IncrementNumber();
-    }, 10000);
+    }, 5000);
     // get the status from the api
     const [status, setStatus] = React.useState("pending");
     // write a function to change the status in the ui
