@@ -9,7 +9,6 @@ export default {
                 gray: "#525252",
                 gray_white: "#e6e6e6",
                 green: "#078343",
-                
             },
         },
     },
