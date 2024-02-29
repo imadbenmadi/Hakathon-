@@ -2,14 +2,13 @@ import React from "react";
 // import Logo from "../../../public/Logo.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+import { useAppContext } from "../Context/AppContext";
 function Login() {
     const { set_Auth, store_login, isAuth, IsEmailVerified, Notifications } =
         useAppContext();
