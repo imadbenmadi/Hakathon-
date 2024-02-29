@@ -30,7 +30,10 @@ function Login() {
                 }
             );
             console.log(response);
-            if (response.status === 200) {
+            if (response.status === 400) {
+                throw new Error(" رقم الهاتف او كلمة المرور غير صحيحة");
+            }
+            else if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
 
                 store_login({
@@ -44,14 +47,15 @@ function Login() {
                 localStorage.setItem("token", response.data.user.token);
                 set_Auth(true);
                 Navigate("/");
-            } else if (response.status !== 200) {
-                setLoading(false);
+            } 
+            else {
                 Swal.fire("خطأ!", "حدث خطأ ما", "error");
             }
         } catch (error) {
             setLoading(false);
             Swal.fire("خطأ!", "حدث خطأ ما", "error");
-        }finally{
+        } finally {
+            setLoading(false);
             setSubmitting(false);
         }
     }
