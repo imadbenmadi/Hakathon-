@@ -56,7 +56,7 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className=" text-end">
             <div>
                 {/* <img className=" w-20 m-auto pt-5 " src={Logo} alt="" /> */}
             </div>
@@ -105,7 +105,7 @@ function Login() {
                         <Form className="  flex flex-col text-sm md:text-lg md:mx-5 gap-4">
                             <div>
                                 <div>
-                                    Email{" "}
+                                    رقم الهاتف المزلي{" "}
                                     <span className=" text-red-600 font-semibold">
                                         *
                                     </span>
@@ -124,21 +124,12 @@ function Login() {
                             </div>
                             <div>
                                 <div>
-                                    Password{" "}
+                                    كلمة السر{" "}
                                     <span className=" text-red-600 font-semibold">
                                         *
                                     </span>
                                 </div>
                                 <div className=" flex items-center">
-                                    <Field
-                                        type={
-                                            showPassword ? "text" : "password"
-                                        }
-                                        name="Password"
-                                        disabled={isSubmitting}
-                                        className="border border-gray_white px-2 py-1  rounded-s  shadow-sm w-full"
-                                    />
-
                                     <div className=" px-2 py-1 rounded-e cursor-pointer border border-gray_white shadow-sm ">
                                         {showPassword ? (
                                             <IoMdEyeOff
@@ -152,6 +143,14 @@ function Login() {
                                             />
                                         )}
                                     </div>
+                                    <Field
+                                        type={
+                                            showPassword ? "text" : "password"
+                                        }
+                                        name="Password"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-2 py-1  rounded-s  shadow-sm w-full"
+                                    />
                                 </div>
 
                                 <ErrorMessage
@@ -176,13 +175,13 @@ function Login() {
                     )}
                 </Formik>
             </div>
-            <div className=" text-center mt-4 text-black_text">
-                Don't Have an Account ?{" "}
+            <div className="text-center mt-4 text-black_text">
+                ليس لديك حساب؟{" "}
                 <Link
                     to={"/Register"}
-                    className=" text-green font-semibold cursor-pointer"
+                    className="text-green font-semibold cursor-pointer"
                 >
-                    Register
+                    سجل الآن
                 </Link>
             </div>
         </div>
