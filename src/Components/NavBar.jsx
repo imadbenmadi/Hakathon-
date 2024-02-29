@@ -76,10 +76,10 @@ function NavBar() {
                 </div>
             ) : (
                 <div className="w-full bg-white fixed flex justify-between items-center top-0 left-0 z-30 p-5 shadow-lg">
-                    <div className="flex justify-start items-center gap-3">
+                    <Link to={"/"} className="flex justify-start items-center gap-3">
                         <img src={Logo} alt="" className="w-28" />
                         <p></p>
-                    </div>
+                    </Link>
                     <div className="flex justify-center items-center gap-14">
                         {Links.map((link, index) => (
                             <Link
