@@ -31,7 +31,14 @@ function Login() {
             );
             console.log(response);
             if (response.status === 400) {
-                throw new Error(" رقم الهاتف او كلمة المرور غير صحيحة");
+                // throw new Error(" رقم الهاتف او كلمة المرور غير صحيحة");
+                setLoading(false);
+                Swal.fire(
+                    "خطأ!",
+                    "رقم الهاتف او كلمة المرور غير صحيحة",
+                    "error"
+                );
+
             }
             else if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
