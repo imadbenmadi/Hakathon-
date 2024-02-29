@@ -10,7 +10,7 @@ function NavBar() {
     const [show, setShow] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [isSmall, setIsSmall] = useState(false);
-     const { isAuth } = useAppContext();
+    const { isAuth } = useAppContext();
     useEffect(() => {
         console.log("isAuth : ", isAuth);
     }, [isAuth]);
@@ -76,7 +76,10 @@ function NavBar() {
                 </div>
             ) : (
                 <div className="w-full bg-white fixed flex justify-between items-center top-0 left-0 z-30 p-5 shadow-lg">
-                    <Link to={"/"} className="flex justify-start items-center gap-3">
+                    <Link
+                        to={"/"}
+                        className="flex justify-start items-center gap-3"
+                    >
                         <img src={Logo} alt="" className="w-28" />
                         <p></p>
                     </Link>
@@ -90,27 +93,27 @@ function NavBar() {
                                 {link.name}
                             </Link>
                         ))}
+                    </div>
+                    {!isAuth && (
+                        <div>
+                            <button
+                                onClick={() => navigate("/Login")}
+                                className="w-32 p-3 bg-blue-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105"
+                            >
+                                Login
+                            </button>
                         </div>
-                        {!isAuth && (
-                            <div>
-                                <button
-                                    onClick={() => navigate("/Login")}
-                                    className="w-32 p-3 bg-blue-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105"
-                                >
-                                    Login
-                                </button>
-                            </div>
-                        )}
-                        {isAuth && (
-                            <div>
-                                <button
-                                    onClick={() => navigate("/Profile")}
-                                    className="w-32 p-3 text-gray text-3xl rounded-[8px] transition-all duration-300 hover:scale-105"
-                                >
-                                    <FaUser/>
-                                </button>
-                            </div>
-                        )}
+                    )}
+                    {isAuth && (
+                        <div>
+                            <button
+                                onClick={() => navigate("/Profile")}
+                                className="w-32 p-3 text-gray text-3xl rounded-[8px] transition-all duration-300 hover:scale-105"
+                            >
+                                <FaUser />
+                            </button>
+                        </div>
+                    )}
                 </div>
             )}
         </>
