@@ -3,10 +3,15 @@ import Logo from "../assets/images/download-removebg-preview.png";
 import { useNavigate } from "react-router";
 import { CiMenuBurger } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../Context/AppContext";
+import { FaUser } from "react-icons/fa";
+
 function NavBar() {
     const [show, setShow] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [isSmall, setIsSmall] = useState(false);
+     const { isAuth } = useAppContext();
+    
     useEffect(() => {
         const handleResize = () => {
             setIsSmall(window.innerWidth <= 768);
@@ -83,15 +88,27 @@ function NavBar() {
                                 {link.name}
                             </Link>
                         ))}
-                    </div>
-                    <div>
-                        <button
-                            onClick={() => navigate("/Login")}
-                            className="w-32 p-3 bg-blue-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105"
-                        >
-                            Login
-                        </button>
-                    </div>
+                        </div>
+                        {!isAuth && (
+                            <div>
+                                <button
+                                    onClick={() => navigate("/Login")}
+                                    className="w-32 p-3 bg-blue-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105"
+                                >
+                                    Login
+                                </button>
+                            </div>
+                        )}
+                        {isAuth && (
+                            <div>
+                                <button
+                                    onClick={() => navigate("/Profile")}
+                                    className="w-32 p-3 text-gray text-3xl rounded-[8px] transition-all duration-300 hover:scale-105"
+                                >
+                                    <FaUser/>
+                                </button>
+                            </div>
+                        )}
                 </div>
             )}
         </>
