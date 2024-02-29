@@ -67,7 +67,7 @@ function BookTicket() {
                                     as="select"
                                     name="center"
                                     disabled={isSubmitting}
-                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
+                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full text-end outline-none"
                                 >
                                     <option value="">اختر المركز</option>
                                     {centers.map((center, index) => (
@@ -88,7 +88,7 @@ function BookTicket() {
                                     type="text"
                                     name="title"
                                     disabled={isSubmitting}
-                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
+                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none"
                                 />
                                 <ErrorMessage
                                     name="title"
@@ -102,7 +102,7 @@ function BookTicket() {
                                     as="textarea"
                                     name="description"
                                     disabled={isSubmitting}
-                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
+                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none resize-none"
                                 />
                                 <ErrorMessage
                                     name="description"
@@ -112,11 +112,10 @@ function BookTicket() {
                             </div>
                             <button
                                 type="submit"
-                                className={`${
-                                    isSubmitting
-                                        ? "bg-gray_white text-gray"
-                                        : "bg-green text-white"
-                                } w-fit m-auto px-4 py-2 rounded font-semibold`}
+                                className={` ${isSubmitting
+                                    ? "bg-gray_white text-gray"
+                                    : " bg-green text-white"
+                                    } w-fit m-auto px-4 py-2 rounded font-semibold `}
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? "جارٍ التحميل..." : "حجز"}
