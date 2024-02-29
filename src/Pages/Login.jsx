@@ -59,10 +59,13 @@ function Login() {
 
     return (
         <div className=" text-end">
-            <div className=" text-lg font-semibold mb-4 text-center">
+            <div className=" m-auto text-center pt-5 text-2xl font-semibold text-blue ">
                 تسجيل الدخول الى حسابك
             </div>
 
+            <div className=" m-auto text-center pt-1 text-lg font-semibold text-gray ">
+                اتصالات الجزائر دائما اقرب
+            </div>
             {/* input fields */}
             <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
                 <Formik

@@ -96,8 +96,8 @@ function Register() {
                         إنشاء حسابك الجديد
                     </div>
 
-                    <div className=" m-auto text-center pt-1 text-lg font-semibold  ">
-                        دائما اقرب
+                    <div className=" m-auto text-center pt-1 text-lg font-semibold text-gray ">
+                        اتصالات الجزائر دائما اقرب 
                     </div>
                     {/* input fields */}
                     <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg  ">
