@@ -18,7 +18,7 @@ function Home() {
           الجديدة وايضا يمكنك ترك تعليق لنا في حالة لم تعجبك الخدمة{" "}
         </div>
 
-        <div className=" mx-auto  my-10 py-5 px-10 w-fit text-white bg-blue-400 rounded-lg text-center text-xl font-bold">
+        <div className=" mx-auto float-right  my-10 py-5 px-10 w-fit text-white bg-blue-400 rounded-lg text-center text-xl font-bold">
           جرب الأن
         </div>
       </div>
