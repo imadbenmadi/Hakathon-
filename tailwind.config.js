@@ -9,7 +9,7 @@ export default {
                 gray: "#525252",
                 gray_white: "#e6e6e6",
                 green: "#078343",
-                blue: "#004172",
+                
             },
             fontFamily: {
                 customFont: ['"Outfit"', "sans-serif"],
