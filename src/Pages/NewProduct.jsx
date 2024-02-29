@@ -1,30 +1,17 @@
 import React from "react";
-import prodact from "../assets/images/download.jpg";
+
+import Prodect from "../Components/Prodact/Prodect";
 function NewProduct() {
   return (
-    <div className="flex w-screen mt-32 text-end  ">
-      <div className="max-w-[1300px] mx-auto flex gap-10 ">
-        <div className=" w-[48%] ">
-          <div className="text-2xl  "> كيفية تشغيل مودم اتصالات الجزائر </div>
-          <div className="text-xl">
-            لتشغيل مودم اتصالات الجزائر، أولاً يجب تأكيد توافر الأدوات اللازمة
-            مثل الكابلات والتعريفات. بعد ذلك، قم بتوصيل المودم بجهاز الكمبيوتر
-            أو الجهاز المتوافق باستخدام الكابل المناسب. قد تتطلب الخطوة الثانية
-            تثبيت التعريفات إذا لم يتعرف النظام على المودم تلقائياً، ويمكن ذلك
-            عادةً من خلال قرص التعريفات المرفق أو عبر تنزيلها من موقع الشركة
-            المصنعة. بعد ذلك، قم بإعداد الاتصال الجديد في إعدادات الشبكة بحسب
-            توجيهات النظام الخاص بك، وادخل المعلومات المطلوبة مثل اسم المستخدم
-            وكلمة المرور المقدمة من شركة الاتصالات. بمجرد إتمام عملية الاتصال،
-            يمكنك فتح متصفح الويب والتأكد من الاتصال الناجح بالإنترنت. هذه
-            الخطوات تعد الطريقة الأساسية لتشغيل مودم اتصالات الجزائر والاستمتاع
-            بالاتصال بالإنترنت بكل سهولة ويسر.
-          </div>
-        </div>
-
-        <div className="w-[48%] ">
-          <img className="w-[80%] h-full" src={prodact} alt="" />
-        </div>
+    <div className=" max-w-[1300px] mx-auto w-screen mt-32 text-end  ">
+      <div className="text-center text-5xl font-bold w-full py-10">
+        {" "}
+        معلومات منتجاتنا الجديدة{" "}
       </div>
+      <Prodect />
+      <Prodect />
+      <Prodect />
+      <Prodect />
     </div>
   );
 }
