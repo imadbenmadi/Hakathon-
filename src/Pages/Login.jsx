@@ -8,8 +8,11 @@ import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import Axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const { set_Auth, store_login, isAuth, IsEmailVerified, Notifications } =
+        useAppContext();
     const Navigate = useNavigate();
     const [showpassword, setShowpassword] = useState(false);
 
@@ -27,10 +30,20 @@ function Login() {
                     validateStatus: () => true,
                 }
             );
-                console.log(response);
+            console.log(response);
             if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
+
+                store_login({
+                    first_name: response.data.user.first_name,
+                    last_name: response.data.user.last_name,
+                    home_number: response.data.user.username,  
+                    // address: response.data.user.address, 
+                    id: response.data.user.id,
+                });
+
                 localStorage.setItem("token", response.data.user.token);
+                set_Auth(true);
                 Navigate("/");
             } else if (response.status === 401) {
                 Swal.fire(
@@ -38,21 +51,27 @@ function Login() {
                     "اسم المستخدم أو كلمة المرور غير صحيحة",
                     "error"
                 );
+                setLoading(false);
             } else if (response.status === 409) {
                 Swal.fire("خطأ!", `${response.data.message} `, "error");
+                setLoading(false);
             } else if (response.status === 500) {
                 Swal.fire("خطأ!", "خطأ في الخادم الداخلي", "error");
+                setLoading(false);
             } else if (response.status === 429) {
                 Swal.fire(
                     "خطأ!",
                     "طلبات كثيرة جدًا، جرب مرة أخرى لاحقًا",
                     "error"
                 );
+                setLoading(false);
             } else {
                 Swal.fire("خطأ!", "حدث خطأ ما", "error");
+                setLoading(false);
             }
         } catch (error) {
             Swal.fire("خطأ!", "حدث خطأ ما", "error");
+            setLoading(false);
         }
 
         setSubmitting(false);
