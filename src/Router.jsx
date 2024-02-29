@@ -1,63 +1,33 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./Components/Home/Home";
+import Home from "./Pages/Home";
 import App from "./App";
-import Not_Finished from "./Components/Not_Finished";
-import Blogs from "./Components/Blogs/Blogs";
-import Blogs_item from "./Components/Blogs/Blogs_item";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
-import Services from "./Components/Servicecs/Services";
-import Courses from "./Components/Courses/Courses";
-import Course_item from "./Components/Courses/Course_item";
-import Service_item from "./Components/Servicecs/Service_item";
-import Events from "./Components/Events/Events";
-import Events_item from "./Components/Events/Events_item";
-import Contact from "./Components/Contact/Contact";
-import VerifyEmail from "./Components/Verify_email/Verify_email";
+import FAQ from "./Pages/FAQ";
+import NewProduct from "./Pages/NewProduct";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Tickets from "./Pages/Tickets";
+import Tickets_item from "./Pages/Tickets_item";
+import Report from "./Pages/Report";
 
-import Profile from "./Components/Profile/Profile";
-import Info from "./Components/Profile/Info";
-import UserServices from "./Components/Profile/UserServices";
-import UserNotifications from "./Components/Profile/UserNotifications";
-import UserCourses from "./Components/Profile/UserCourses";
-
+import Feedback from "./Pages/Feedback";
+import Profile from "./Pages/Profile";
 import Not_Found from "./Components/Not_Found";
-import Dashboard from "./Dashboard/Dashboard";
-import Dashboard_Login from "./Dashboard/Dashboard_Login";
-import Dashboard_home from "./Dashboard/Dashboard_home/Dashboard_home";
-
-import Dashboard_Users from "./Dashboard/Dashboard_Users/Dashboard_Users";
-import Default_user from "./Dashboard/Dashboard_Users/User/Default";
-import Edit_user from "./Dashboard/Dashboard_Users/User/Edit";
-import Dashboard_Users_Notification from "./Dashboard/Dashboard_Users/User/Notifications/Notifications";
-import Current_Notifications from "./Dashboard/Dashboard_Users/User/Notifications/Current_Notifications";
-import Add_user from "./Dashboard/Dashboard_Users/Add_user";
-import User from "./Dashboard/Dashboard_Users/User/User";
-import Table from "./Dashboard/Dashboard_Users/Table/Table";
-
-import Dashboard_Courses from "./Dashboard/Dashboard_Courses/Dashboard_Courses";
-import Add_Course from "./Dashboard/Dashboard_Courses/Add_Course";
-
-import Dashboard_Services from "./Dashboard/Dashboard_Services/Dashboard_Services";
-import Dashboard_Events from "./Dashboard/Dashboard_Events/Dashboard_Events";
-import Dashboard_Blogs from "./Dashboard/Dashboard_Blogs/Dashboard_Blogs";
-
 const routes = createBrowserRouter([
     {
         path: "/",
         element: <App />,
         children: [
             { index: true, element: <Home /> },
-            { path: "/FAQ", element: <Services /> },
-            { path: "/NewProduct", element: <Service_item /> },
-            { path: "/Login", element: <Courses /> },
-            { path: "/Register", element: <Course_item /> },
-            { path: "/Tickets", element: <Events /> },
-            { path: "/Tickets/:id", element: <Events_item /> },
-            { path: "/Report", element: <Contact /> },
-            { path: "/Feedback", element: <Blogs /> },
-            { path: "/Profile", element: <Blogs_item /> },
+            { path: "/FAQ", element: <FAQ /> },
+            { path: "/NewProduct", element: <NewProduct /> },
+            { path: "/Login", element: <Login /> },
+            { path: "/Register", element: <Register /> },
+            { path: "/Tickets", element: <Tickets /> },
+            { path: "/Tickets/:id", element: <Tickets_item /> },
+            { path: "/Report", element: <Report /> },
+            { path: "/Feedback", element: <Feedback /> },
+            { path: "/Profile", element: <Profile /> },
             { path: "*", element: <Not_Found /> },
         ],
     },
