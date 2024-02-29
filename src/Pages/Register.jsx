@@ -8,7 +8,7 @@ import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 // import { handleRegistration } from "./handleRegistration";
 import { useEffect } from "react";
-// import VerifyEmail from "./VerifyEmail";
+// import Verifyemail from "./Verifyemail";
 import Axios from "axios";
 import Swal from "sweetalert2";
 
@@ -69,14 +69,14 @@ function Register() {
 
     const [open_verify, setOpen_verify] = useState(false);
     const [Verify_id, setVerifyId] = useState(null);
-    const [Verify_email, setVerifyEmail] = useState("");
-    const [Verify_Password, setVerifyPassword] = useState("");
+    const [Verify_email, setVerifyemail] = useState("");
+    const [Verify_password, setVerifypassword] = useState("");
     const [rigester_Date, set_rigester_Date] = useState(null);
     const [Succed_Register, setSucced_Register] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
+    const [showpassword, setShowpassword] = useState(false);
 
-    function handleShowPassword() {
-        setShowPassword(!showPassword);
+    function handleShowpassword() {
+        setShowpassword(!showpassword);
     }
 
     useEffect(() => {
@@ -105,86 +105,90 @@ function Register() {
 
                         <Formik
                             initialValues={{
-                                FirstName: "",
-                                LastName: "",
-                                PersonalPhoneNumber: "",
-                                HomePhoneNumber: "",
-                                Email: "",
-                                Password: "",
-                                Age: "",
-                                Gender: "male",
+                                first_name: "",
+                                last_name: "",
+                                phone_number: "",
+                                home_number: "",
+                                email: "",
+                                password: "",
+                                adress: "", // Added adress field
                             }}
                             validate={(values) => {
                                 const errors = {};
                                 // Validate First Name
-                                if (!values.FirstName) {
-                                    errors.FirstName = "الاسم الأول اجباري";
-                                } else if (values.FirstName > 14)
-                                    errors.FirstName =
+                                if (!values.first_name) {
+                                    errors.first_name = "الاسم الأول اجباري";
+                                } else if (values.first_name > 14)
+                                    errors.first_name =
                                         "يجب أن يكون الاسم الأول أقل من 14 حرفًا";
-                                else if (values.FirstName < 3)
-                                    errors.FirstName =
+                                else if (values.first_name < 3)
+                                    errors.first_name =
                                         "يجب أن يكون الاسم الأول أكثر من 3 أحرف";
-                                if (!values.LastName) {
+                                if (!values.last_name) {
                                     // Validate Last Name
-                                    errors.LastName = "الاسم الأخير اجباري";
-                                } else if (values.LastName > 14) {
+                                    errors.last_name = "الاسم الأخير اجباري";
+                                } else if (values.last_name > 14) {
                                     ("يجب أن يكون الاسم الأخير أقل من 14 حرفًا");
-                                } else if (values.LastName < 3)
-                                    errors.LastName =
+                                } else if (values.last_name < 3)
+                                    errors.last_name =
                                         "يجب أن يكون الاسم الأخير أكثر من 3 أحرف";
 
                                 // Validate Personal Phone Number
-                                if (!values.PersonalPhoneNumber) {
-                                    errors.PersonalPhoneNumber =
+                                if (!values.phone_number) {
+                                    errors.phone_number =
                                         "رقم الهاتف الشخصي اجباري";
                                 } else if (
                                     !/^(0)(5|6|7)[0-9]{8}$/.test(
-                                        values.PersonalPhoneNumber
+                                        values.phone_number
                                     )
                                 ) {
-                                    errors.PersonalPhoneNumber =
+                                    errors.phone_number =
                                         "رقم الهاتف الشخصي غير صالح";
                                 }
 
                                 // Validate Home Phone Number
-                                if (!values.HomePhoneNumber) {
-                                    errors.HomePhoneNumber =
+                                if (!values.home_number) {
+                                    errors.home_number =
                                         "رقم الهاتف المنزلي اجباري";
                                 } else if (
                                     !/^(0)(1|2|3|4)[0-9]{9}$/.test(
-                                        values.HomePhoneNumber
+                                        values.home_number
                                     )
                                 ) {
-                                    errors.HomePhoneNumber =
+                                    errors.home_number =
                                         "رقم الهاتف المنزلي غير صالح";
                                 }
 
-                                // Validate Email
-                                if (!values.Email) {
-                                    errors.Email = "البريد الإلكتروني اجباري";
+                                // Validate email
+                                if (!values.email) {
+                                    errors.email = "البريد الإلكتروني اجباري";
                                 } else if (
                                     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                                        values.Email
+                                        values.email
                                     )
                                 ) {
-                                    errors.Email =
+                                    errors.email =
                                         "عنوان البريد الإلكتروني غير صالح";
                                 }
 
-                                // Validate Password
-                                if (!values.Password) {
-                                    errors.Password = "كلمة المرور اجبارية";
-                                } else if (values.Password.length < 8) {
-                                    errors.Password =
+                                // Validate password
+                                if (!values.password) {
+                                    errors.password = "كلمة المرور اجبارية";
+                                } else if (values.password.length < 8) {
+                                    errors.password =
                                         "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
+                                }
+
+                                // Validate adress
+                                if (!values.adress) {
+                                    errors.adress = "العنوان اجباري";
                                 }
                                 return errors;
                             }}
                             onSubmit={async (values, { setSubmitting }) => {
                                 // Call your registration logic here
-                                setVerifyEmail(values.Email);
-                                setVerifyPassword(values.Password);
+                                setVerifyemail(values.email);
+                                setVerifypassword(values.password);
                                 await handleRegistration(values, {
                                     setSubmitting,
                                     setSucced_Register,
@@ -209,12 +213,12 @@ function Register() {
                                             <div>
                                                 <Field
                                                     type="text"
-                                                    name="FirstName"
+                                                    name="first_name"
                                                     className="border border-gray_white px-2 py-1 rounded  shadow-sm "
                                                     disabled={isSubmitting}
                                                 />
                                                 <ErrorMessage
-                                                    name="FirstName"
+                                                    name="first_name"
                                                     component="div"
                                                     style={errorInputMessage}
                                                 />
@@ -230,12 +234,12 @@ function Register() {
                                             <div>
                                                 <Field
                                                     type="text"
-                                                    name="LastName"
+                                                    name="last_name"
                                                     disabled={isSubmitting}
                                                     className="border border-gray_white px-2 py-1 rounded  shadow-sm "
                                                 />
                                                 <ErrorMessage
-                                                    name="LastName"
+                                                    name="last_name"
                                                     component="div"
                                                     style={errorInputMessage}
                                                 />
@@ -251,12 +255,12 @@ function Register() {
                                         </div>
                                         <Field
                                             type="text"
-                                            name="PersonalPhoneNumber"
+                                            name="phone_number"
                                             disabled={isSubmitting}
                                             className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
                                         />
                                         <ErrorMessage
-                                            name="PersonalPhoneNumber"
+                                            name="phone_number"
                                             component="div"
                                             style={errorInputMessage}
                                         />
@@ -270,12 +274,12 @@ function Register() {
                                         </div>
                                         <Field
                                             type="text"
-                                            name="HomePhoneNumber"
+                                            name="home_number"
                                             disabled={isSubmitting}
                                             className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
                                         />
                                         <ErrorMessage
-                                            name="HomePhoneNumber"
+                                            name="home_number"
                                             component="div"
                                             style={errorInputMessage}
                                         />
@@ -288,13 +292,13 @@ function Register() {
                                             </span>
                                         </div>
                                         <Field
-                                            type="Email"
-                                            name="Email"
+                                            type="email"
+                                            name="email"
                                             disabled={isSubmitting}
                                             className="border border-gray_white px-2 py-1 rounded  shadow-sm w-full"
                                         />
                                         <ErrorMessage
-                                            name="Email"
+                                            name="email"
                                             component="div"
                                             style={errorInputMessage}
                                         />
@@ -309,28 +313,28 @@ function Register() {
                                         <div className=" flex items-center">
                                             <Field
                                                 type={
-                                                    showPassword
+                                                    showpassword
                                                         ? "text"
                                                         : "password"
                                                 }
-                                                name="Password"
+                                                name="password"
                                                 disabled={isSubmitting}
                                                 className="border border-gray_white px-2 py-1  rounded-s  shadow-sm w-full"
                                             />
 
                                             <div className=" px-2 py-1 rounded-e cursor-pointer border border-gray_white shadow-sm ">
-                                                {showPassword ? (
+                                                {showpassword ? (
                                                     <IoMdEyeOff
                                                         className="text-gray text-xl md:text-2xl"
                                                         onClick={
-                                                            handleShowPassword
+                                                            handleShowpassword
                                                         }
                                                     />
                                                 ) : (
                                                     <IoMdEye
                                                         className=" text-gray text-xl md:text-2xl"
                                                         onClick={
-                                                            handleShowPassword
+                                                            handleShowpassword
                                                         }
                                                     />
                                                 )}
@@ -338,12 +342,12 @@ function Register() {
                                         </div>
 
                                         <ErrorMessage
-                                            name="Password"
+                                            name="password"
                                             component="div"
                                             style={errorInputMessage}
                                         />
                                     </div>
-                                    
+
                                     <button
                                         type="submit"
                                         className={` ${
@@ -374,8 +378,6 @@ function Register() {
                     </div>
                 </div>
             )}
-
-            
         </div>
     );
 }
