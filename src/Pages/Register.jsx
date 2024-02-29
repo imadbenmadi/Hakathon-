@@ -11,6 +11,7 @@ import { useEffect } from "react";
 // import VerifyEmail from "./VerifyEmail";
 import Axios from "axios";
 import Swal from "sweetalert2";
+
 function Register() {
     async function handleRegistration(
         values,
@@ -28,8 +29,8 @@ function Register() {
 
             if (response.status == 401) {
                 Swal.fire(
-                    "Email already exists",
-                    `Please try to use another Email , ${response.data.message}`,
+                    "البريد الإلكتروني موجود بالفعل",
+                    `الرجاء استخدام بريد إلكتروني آخر , ${response.data.message}`,
                     "error"
                 );
             } else if (response.status == 200) {
@@ -37,28 +38,28 @@ function Register() {
                 set_rigester_Date(response.data.Date);
                 setSucced_Register(true);
             } else if (response.status == 400) {
-                Swal.fire("Error!", `${response.data.message} `, "error");
+                Swal.fire("خطأ!", `${response.data.message} `, "error");
             } else if (response.status == 409) {
-                Swal.fire("Error!", `${response.data.message}`, "error");
+                Swal.fire("خطأ!", `${response.data.message}`, "error");
             } else if (response.status == 429) {
                 Swal.fire(
-                    "Error!",
-                    `warning! you created lot of accounts in a short time ,try again latter`,
+                    "خطأ!",
+                    `تحذير! لقد أنشأت الكثير من الحسابات في وقت قصير ، جرب مرة أخرى لاحقًا`,
                     "error"
                 );
             } else if (response.status == 500) {
-                Swal.fire("Error!", `Internal server error.`, "error");
+                Swal.fire("خطأ!", `خطأ في الخادم الداخلي.`, "error");
             } else {
                 Swal.fire(
-                    "Error!",
-                    `Something Went Wrong. Please try again `,
+                    "خطأ!",
+                    `حدث خطأ ما. الرجاء المحاولة مرة أخرى `,
                     "error"
                 );
             }
         } catch (error) {
             Swal.fire(
-                "Error!",
-                `Something Went Wrong. Please try again , ${error.message}`,
+                "خطأ!",
+                `حدث خطأ ما. الرجاء المحاولة مرة أخرى , ${error.message}`,
                 "error"
             );
         }
@@ -73,14 +74,17 @@ function Register() {
     const [rigester_Date, set_rigester_Date] = useState(null);
     const [Succed_Register, setSucced_Register] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
     function handleShowPassword() {
         setShowPassword(!showPassword);
     }
+
     useEffect(() => {
         if (Succed_Register) {
             setOpen_verify(true);
         }
     }, [Succed_Register]);
+
     return (
         <div>
             {!open_verify && (
@@ -89,19 +93,22 @@ function Register() {
                         {/* <img className=" w-20 m-auto pt-5 " src={Logo} alt="" /> */}
                     </div>
                     <div className=" m-auto text-center pt-5 text-2xl font-semibold text-blue ">
-                        انضم إلى مجتمع الاسكيت
+                        إنشاء حسابك الجديد
+                    </div>
+
+                    <div className=" m-auto text-center pt-1 text-lg font-semibold  ">
+                        دائما اقرب
                     </div>
                     {/* input fields */}
                     <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg  ">
-                        <div className=" text-lg font-semibold mb-4 ">
-                            إنشاء حسابك
-                        </div>
+                        <div className=" text-lg font-semibold mb-4 "></div>
 
                         <Formik
                             initialValues={{
                                 FirstName: "",
                                 LastName: "",
-                                Telephone: "",
+                                PersonalPhoneNumber: "",
+                                HomePhoneNumber: "",
                                 Email: "",
                                 Password: "",
                                 Age: "",
@@ -111,7 +118,7 @@ function Register() {
                                 const errors = {};
                                 // Validate First Name
                                 if (!values.FirstName) {
-                                    errors.FirstName = "الاسم الأول مطلوب";
+                                    errors.FirstName = "الاسم الأول اجباري";
                                 } else if (values.FirstName > 14)
                                     errors.FirstName =
                                         "يجب أن يكون الاسم الأول أقل من 14 حرفًا";
@@ -120,24 +127,42 @@ function Register() {
                                         "يجب أن يكون الاسم الأول أكثر من 3 أحرف";
                                 if (!values.LastName) {
                                     // Validate Last Name
-                                    errors.LastName = "الاسم الأخير مطلوب";
+                                    errors.LastName = "الاسم الأخير اجباري";
                                 } else if (values.LastName > 14) {
                                     ("يجب أن يكون الاسم الأخير أقل من 14 حرفًا");
                                 } else if (values.LastName < 3)
                                     errors.LastName =
                                         "يجب أن يكون الاسم الأخير أكثر من 3 أحرف";
-                                if (!values.Telephone) {
-                                    errors.Telephone = "رقم الهاتف مطلوب";
+
+                                // Validate Personal Phone Number
+                                if (!values.PersonalPhoneNumber) {
+                                    errors.PersonalPhoneNumber =
+                                        "رقم الهاتف الشخصي اجباري";
                                 } else if (
                                     !/^(0)(5|6|7)[0-9]{8}$/.test(
-                                        values.Telephone
+                                        values.PersonalPhoneNumber
                                     )
                                 ) {
-                                    errors.Telephone = "رقم الهاتف غير صالح";
+                                    errors.PersonalPhoneNumber =
+                                        "رقم الهاتف الشخصي غير صالح";
                                 }
+
+                                // Validate Home Phone Number
+                                if (!values.HomePhoneNumber) {
+                                    errors.HomePhoneNumber =
+                                        "رقم الهاتف المنزلي اجباري";
+                                } else if (
+                                    !/^(0)(1|2|3|4)[0-9]{9}$/.test(
+                                        values.HomePhoneNumber
+                                    )
+                                ) {
+                                    errors.HomePhoneNumber =
+                                        "رقم الهاتف المنزلي غير صالح";
+                                }
+
                                 // Validate Email
                                 if (!values.Email) {
-                                    errors.Email = "البريد الإلكتروني مطلوب";
+                                    errors.Email = "البريد الإلكتروني اجباري";
                                 } else if (
                                     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
                                         values.Email
@@ -149,7 +174,7 @@ function Register() {
 
                                 // Validate Password
                                 if (!values.Password) {
-                                    errors.Password = "كلمة المرور مطلوبة";
+                                    errors.Password = "كلمة المرور اجبارية";
                                 } else if (values.Password.length < 8) {
                                     errors.Password =
                                         "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
@@ -166,7 +191,7 @@ function Register() {
 
                                 // Validate Gender
                                 if (!values.Gender) {
-                                    errors.Gender = "مطلوب";
+                                    errors.Gender = "اجباري";
                                 }
                                 return errors;
                             }}
@@ -233,19 +258,38 @@ function Register() {
                                     </div>
                                     <div>
                                         <div>
-                                            رقم الهاتف
+                                            رقم الهاتف الشخصي
                                             <span className=" text-red-600 font-semibold">
                                                 *
                                             </span>
                                         </div>
                                         <Field
                                             type="text"
-                                            name="Telephone"
+                                            name="PersonalPhoneNumber"
                                             disabled={isSubmitting}
                                             className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
                                         />
                                         <ErrorMessage
-                                            name="Telephone"
+                                            name="PersonalPhoneNumber"
+                                            component="div"
+                                            style={errorInputMessage}
+                                        />
+                                    </div>
+                                    <div>
+                                        <div>
+                                            رقم الهاتف المنزلي
+                                            <span className=" text-red-600 font-semibold">
+                                                *
+                                            </span>
+                                        </div>
+                                        <Field
+                                            type="text"
+                                            name="HomePhoneNumber"
+                                            disabled={isSubmitting}
+                                            className="border border-gray_white px-2 py-1 rounded shadow-sm w-full"
+                                        />
+                                        <ErrorMessage
+                                            name="HomePhoneNumber"
                                             component="div"
                                             style={errorInputMessage}
                                         />
@@ -398,6 +442,7 @@ function Register() {
         </div>
     );
 }
+
 const errorInputMessage = {
     fontSize: "12px",
     color: "red",

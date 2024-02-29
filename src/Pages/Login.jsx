@@ -75,14 +75,14 @@ function Login() {
 
                         // Validate HomeNumber
                         if (!values.HomeNumber) {
-                            errors.HomeNumber = "الرقم مطلوب";
+                            errors.HomeNumber = "الرقم اجباري";
                         } else if (!/^\d+$/.test(values.HomeNumber)) {
                             errors.HomeNumber = "رقم غير صالح";
                         }
 
                         // Validate Password
                         if (!values.Password) {
-                            errors.Password = "كلمة المرور مطلوبة";
+                            errors.Password = "كلمة المرور اجبارية";
                         } else if (values.Password.length < 8) {
                             errors.Password =
                                 "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
