@@ -20,7 +20,7 @@ function Login() {
     async function handleLogin(values, { setSubmitting }) {
         try {
             let response = await Axios.post(
-                "https://backend.skate-consult.com/Login",
+                "https://reasonably-thorough-monitor.ngrok-free.app/Auth/token/",
                 values,
                 {
                     withCredentials: true,
@@ -30,6 +30,7 @@ function Login() {
 
             if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
+                localStorage.setItem("token", response.data.token);
                 Navigate("/");
             } else if (response.status === 401) {
                 Swal.fire(
@@ -70,17 +71,17 @@ function Login() {
             <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
                 <Formik
                     initialValues={{
-                        HomeNumber: "",
+                        home_number: "",
                         Password: "",
                     }}
                     validate={(values) => {
                         const errors = {};
 
-                        // Validate HomeNumber
-                        if (!values.HomeNumber) {
-                            errors.HomeNumber = "الرقم اجباري";
-                        } else if (!/^\d+$/.test(values.HomeNumber)) {
-                            errors.HomeNumber = "رقم غير صالح";
+                        // Validate home_number
+                        if (!values.home_number) {
+                            errors.home_number = "الرقم اجباري";
+                        } else if (!/^\d+$/.test(values.home_number)) {
+                            errors.home_number = "رقم غير صالح";
                         }
 
                         // Validate Password
@@ -108,13 +109,13 @@ function Login() {
                                     </span>
                                 </div>
                                 <Field
-                                    type="HomeNumber"
-                                    name="HomeNumber"
+                                    type="Number"
+                                    name="home_number"
                                     disabled={isSubmitting}
                                     className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none"
                                 />
                                 <ErrorMessage
-                                    name="HomeNumber"
+                                    name="home_number"
                                     component="div"
                                     style={errorInputMessage}
                                 />
