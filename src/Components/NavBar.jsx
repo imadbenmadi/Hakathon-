@@ -49,7 +49,7 @@ function NavBar() {
                             {Links.map((link, index) => (
                                 <Link
                                     key={index}
-                                    href={link.path}
+                                    to={link.path}
                                     className="text-xl text-gray-600 hover:text-blue-500 transition-all duration-300"
                                 >
                                     {link.name}
