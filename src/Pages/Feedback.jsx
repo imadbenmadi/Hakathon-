@@ -4,8 +4,15 @@ import { useState } from "react";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
-
+import { useAppContext } from "../Context/AppContext";
+import { useEffect } from "react";
 function BookTicket() {
+    const { isAuth } = useAppContext();
+    useEffect(() => {
+        if (!isAuth) {
+            Navigate("/Login");
+        }
+    }, []);
     const [centers] = useState([
         "اتصلات الجزائر فرع ورقلة",
         "اتصلات الجزائر فرع وهران",
@@ -28,7 +35,7 @@ function BookTicket() {
     return (
         <div>
             <div className="m-auto text-center pt-5 text-2xl font-semibold text-blue">
-                حجز تذكرة جديدة
+                ارسال تعليق جديد{" "}
             </div>
 
             <div className="border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">

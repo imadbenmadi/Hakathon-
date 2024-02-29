@@ -2,19 +2,21 @@ import React from "react";
 // import Logo from "../../../public/Logo.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import Axios from "axios";
 import Swal from "sweetalert2";
-
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../Context/AppContext";
 function Login() {
+    const { set_Auth, store_login, isAuth, IsEmailVerified, Notifications } =
+        useAppContext();
     const Navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
+    const [showpassword, setShowpassword] = useState(false);
 
-    function handleShowPassword() {
-        setShowPassword(!showPassword);
+    function handleShowpassword() {
+        setShowpassword(!showpassword);
     }
 
     async function handleLogin(values, { setSubmitting }) {
@@ -27,10 +29,20 @@ function Login() {
                     validateStatus: () => true,
                 }
             );
-
+            console.log(response);
             if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
-                localStorage.setItem("token", response.data.token);
+
+                store_login({
+                    first_name: response.data.user.first_name,
+                    last_name: response.data.user.last_name,
+                    home_number: response.data.user.username,  
+                    // address: response.data.user.address, 
+                    id: response.data.user.id,
+                });
+
+                localStorage.setItem("token", response.data.user.token);
+                set_Auth(true);
                 Navigate("/");
             } else if (response.status === 401) {
                 Swal.fire(
@@ -38,21 +50,27 @@ function Login() {
                     "اسم المستخدم أو كلمة المرور غير صحيحة",
                     "error"
                 );
+                setLoading(false);
             } else if (response.status === 409) {
                 Swal.fire("خطأ!", `${response.data.message} `, "error");
+                setLoading(false);
             } else if (response.status === 500) {
                 Swal.fire("خطأ!", "خطأ في الخادم الداخلي", "error");
+                setLoading(false);
             } else if (response.status === 429) {
                 Swal.fire(
                     "خطأ!",
                     "طلبات كثيرة جدًا، جرب مرة أخرى لاحقًا",
                     "error"
                 );
+                setLoading(false);
             } else {
                 Swal.fire("خطأ!", "حدث خطأ ما", "error");
+                setLoading(false);
             }
         } catch (error) {
             Swal.fire("خطأ!", "حدث خطأ ما", "error");
+            setLoading(false);
         }
 
         setSubmitting(false);
@@ -71,24 +89,24 @@ function Login() {
             <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
                 <Formik
                     initialValues={{
-                        home_number: "",
-                        Password: "",
+                        username: "",
+                        password: "",
                     }}
                     validate={(values) => {
                         const errors = {};
 
-                        // Validate home_number
-                        if (!values.home_number) {
-                            errors.home_number = "الرقم اجباري";
-                        } else if (!/^\d+$/.test(values.home_number)) {
-                            errors.home_number = "رقم غير صالح";
+                        // Validate username
+                        if (!values.username) {
+                            errors.username = "الرقم اجباري";
+                        } else if (!/^\d+$/.test(values.username)) {
+                            errors.username = "رقم غير صالح";
                         }
 
-                        // Validate Password
-                        if (!values.Password) {
-                            errors.Password = "كلمة المرور اجبارية";
-                        } else if (values.Password.length < 8) {
-                            errors.Password =
+                        // Validate password
+                        if (!values.password) {
+                            errors.password = "كلمة المرور اجبارية";
+                        } else if (values.password.length < 8) {
+                            errors.password =
                                 "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
                         }
 
@@ -110,12 +128,12 @@ function Login() {
                                 </div>
                                 <Field
                                     type="text"
-                                    name="home_number"
+                                    name="username"
                                     disabled={isSubmitting}
                                     className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none"
                                 />
                                 <ErrorMessage
-                                    name="home_number"
+                                    name="username"
                                     component="div"
                                     style={errorInputMessage}
                                 />
@@ -129,30 +147,30 @@ function Login() {
                                 </div>
                                 <div className=" flex items-center">
                                     <div className=" px-2 py-1 rounded-e cursor-pointer border border-gray_white shadow-sm ">
-                                        {showPassword ? (
+                                        {showpassword ? (
                                             <IoMdEyeOff
                                                 className="text-gray text-xl md:text-2xl"
-                                                onClick={handleShowPassword}
+                                                onClick={handleShowpassword}
                                             />
                                         ) : (
                                             <IoMdEye
                                                 className=" text-gray text-xl md:text-2xl"
-                                                onClick={handleShowPassword}
+                                                onClick={handleShowpassword}
                                             />
                                         )}
                                     </div>
                                     <Field
                                         type={
-                                            showPassword ? "text" : "password"
+                                            showpassword ? "text" : "password"
                                         }
-                                        name="Password"
+                                        name="password"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-2 py-1 rounded-s shadow-sm w-full outline-none"
                                     />
                                 </div>
 
                                 <ErrorMessage
-                                    name="Password"
+                                    name="password"
                                     component="div"
                                     style={errorInputMessage}
                                 />

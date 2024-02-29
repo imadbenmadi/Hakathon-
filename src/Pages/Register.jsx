@@ -37,6 +37,7 @@ function Register() {
                 setVerifyId(response.data._id);
                 set_rigester_Date(response.data.Date);
                 setSucced_Register(true);
+                
             } else if (response.status == 400) {
                 Swal.fire("خطأ!", `${response.data.message} `, "error");
             } else if (response.status == 409) {
@@ -66,7 +67,6 @@ function Register() {
 
         setSubmitting(false);
     }
-
     const [open_verify, setOpen_verify] = useState(false);
     const [Verify_id, setVerifyId] = useState(null);
     const [Verify_email, setVerifyemail] = useState("");
@@ -189,8 +189,6 @@ function Register() {
                                 // Call your registration logic here
                                 setVerifyemail(values.email);
                                 setVerifypassword(values.password);
-                                console.log("values: ", values);
-
                                 await handleRegistration(values, {
                                     setSubmitting,
                                     setSucced_Register,
