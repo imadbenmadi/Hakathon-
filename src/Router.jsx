@@ -12,6 +12,7 @@ import BookTicket from "./Pages/BookTicket";
 import Feedback from "./Pages/Feedback";
 import Profile from "./Pages/Profile";
 import Not_Found from "./Components/Not_Found";
+import AgencyInfo from "./Pages/agencyInfo";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -25,7 +26,8 @@ const routes = createBrowserRouter([
             { path: "/Tickets/Tech", element: <Tickets /> },
             { path: "/BookTicket", element: <BookTicket /> },
             { path: "/Tickets/Center", element: <Tickets /> },
-            { path: "/Tickets/Center/:id", element: <Tickets_item /> },
+            { path: "/Tickets/Center/:id", element: <AgencyInfo /> },
+            { path: "/Tickets/Tech/:id", element: <Tickets_item /> },
             { path: "/Feedback", element: <Feedback /> },
             { path: "/Profile", element: <Profile /> },
             { path: "*", element: <Not_Found /> },
