@@ -8,12 +8,15 @@ import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
 import Axios from "axios";
 import Swal from "sweetalert2";
+
 function Login() {
     const Navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
+
     function handleShowPassword() {
         setShowPassword(!showPassword);
     }
+
     async function handleLogin(values, { setSubmitting }) {
         try {
             let response = await Axios.post(
@@ -21,35 +24,34 @@ function Login() {
                 values,
                 {
                     withCredentials: true,
-
                     validateStatus: () => true,
                 }
             );
 
-            if (response.status == 200) {
-                Swal.fire("Done!", "Logged in Successfully", "success");
+            if (response.status === 200) {
+                Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
                 Navigate("/");
-            } else if (response.status == 401) {
+            } else if (response.status === 401) {
                 Swal.fire(
-                    "HomeNumber already exists",
-                    `Username or Password isn't correct  `,
+                    "خطأ!",
+                    "اسم المستخدم أو كلمة المرور غير صحيحة",
                     "error"
                 );
-            } else if (response.status == 409) {
-                Swal.fire("Error!", `${response.data.message} `, "error");
-            } else if (response.status == 500) {
-                Swal.fire("Error!", `Internal Server Error   `, "error");
-            } else if (response.status == 429) {
+            } else if (response.status === 409) {
+                Swal.fire("خطأ!", `${response.data.message} `, "error");
+            } else if (response.status === 500) {
+                Swal.fire("خطأ!", "خطأ في الخادم الداخلي", "error");
+            } else if (response.status === 429) {
                 Swal.fire(
-                    "Error!",
-                    `Too many requests ,try again latter\n  `,
+                    "خطأ!",
+                    "طلبات كثيرة جدًا، جرب مرة أخرى لاحقًا",
                     "error"
                 );
             } else {
-                Swal.fire("Error!", `Something Went Wrong ,`, "error");
+                Swal.fire("خطأ!", "حدث خطأ ما", "error");
             }
         } catch (error) {
-            Swal.fire("Error!", `Something Went Wrong `, "error");
+            Swal.fire("خطأ!", "حدث خطأ ما", "error");
         }
 
         setSubmitting(false);
@@ -57,15 +59,12 @@ function Login() {
 
     return (
         <div className=" text-end">
-            <div>
-                {/* <img className=" w-20 m-auto pt-5 " src={Logo} alt="" /> */}
-            </div>
             <div className=" text-lg font-semibold mb-4 text-center">
                 تسجيل الدخول الى حسابك
             </div>
 
             {/* input fields */}
-            <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg  ">
+            <div className=" border border-gray_white text-black_text shadow-md w-[80%] md:w-[50%] m-auto mt-3 p-5 rounded-lg">
                 <Formik
                     initialValues={{
                         HomeNumber: "",
@@ -76,17 +75,17 @@ function Login() {
 
                         // Validate HomeNumber
                         if (!values.HomeNumber) {
-                            errors.HomeNumber = "Number is Required";
+                            errors.HomeNumber = "الرقم مطلوب";
                         } else if (!/^\d+$/.test(values.HomeNumber)) {
-                            errors.HomeNumber = "Invalid Number";
+                            errors.HomeNumber = "رقم غير صالح";
                         }
 
                         // Validate Password
                         if (!values.Password) {
-                            errors.Password = "Password is Required";
+                            errors.Password = "كلمة المرور مطلوبة";
                         } else if (values.Password.length < 8) {
                             errors.Password =
-                                "Password must be at least 8 characters long";
+                                "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل";
                         }
 
                         return errors;
@@ -94,14 +93,13 @@ function Login() {
                     onSubmit={(values, { setSubmitting }) => {
                         // Call your registration logic here
                         handleLogin(values, { setSubmitting });
-                        // Succeed_Login ? Navigate("/") : null;
                     }}
                 >
                     {({ isSubmitting }) => (
                         <Form className="  flex flex-col text-sm md:text-lg md:mx-5 gap-4">
                             <div>
                                 <div>
-                                    رقم الهاتف المزلي{" "}
+                                    رقم الهاتف المحلي{" "}
                                     <span className=" text-red-600 font-semibold">
                                         *
                                     </span>
@@ -110,7 +108,7 @@ function Login() {
                                     type="HomeNumber"
                                     name="HomeNumber"
                                     disabled={isSubmitting}
-                                    className="border border-gray_white px-2 py-1 rounded  shadow-sm w-full outline-none"
+                                    className="border border-gray_white px-2 py-1 rounded shadow-sm w-full outline-none"
                                 />
                                 <ErrorMessage
                                     name="HomeNumber"
@@ -145,7 +143,7 @@ function Login() {
                                         }
                                         name="Password"
                                         disabled={isSubmitting}
-                                        className="border border-gray_white px-2 py-1  rounded-s  shadow-sm w-full outline-none"
+                                        className="border border-gray_white px-2 py-1 rounded-s shadow-sm w-full outline-none"
                                     />
                                 </div>
 
@@ -158,13 +156,18 @@ function Login() {
 
                             <button
                                 type="submit"
-                                className={` ${isSubmitting
-                                    ? "bg-gray_white text-gray"
-                                    : " bg-green text-white"
-                                    } w-fit m-auto px-4 py-2 rounded font-semibold `}
+                                className={` ${
+                                    isSubmitting
+                                        ? "bg-gray_white text-gray"
+                                        : " bg-green text-white"
+                                } w-fit m-auto px-4 py-2 rounded font-semibold `}
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting ? <div>loading</div> : "Submit"}
+                                {isSubmitting ? (
+                                    <div>جار التحميل</div>
+                                ) : (
+                                    "تسجيل الدخول"
+                                )}
                             </button>
                         </Form>
                     )}
@@ -182,8 +185,10 @@ function Login() {
         </div>
     );
 }
+
 const errorInputMessage = {
     fontSize: "12px",
     color: "red",
 };
+
 export default Login;
