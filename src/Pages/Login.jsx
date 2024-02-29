@@ -30,7 +30,7 @@ function Login() {
                 console.log(response);
             if (response.status === 200) {
                 Swal.fire("تم!", "تم تسجيل الدخول بنجاح", "success");
-                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("token", response.data.user.token);
                 Navigate("/");
             } else if (response.status === 401) {
                 Swal.fire(
