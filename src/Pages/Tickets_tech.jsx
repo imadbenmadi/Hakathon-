@@ -8,7 +8,7 @@ function Tickets_tech() {
     // write a function to change the status in the ui
     const navigate = useNavigate()
     return <div className="flex flex-col justify-center items-center w-full p-10 gap-10">
-        <Link to='/bookTicket' className='w-32 p-3 bg-green-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105'>Book Ticket</Link>
+        <Link to='/bookTicket' className='w-32 p-3 bg-green text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105'>Book Ticket</Link>
         <div className="flex flex-col justify-start items-start mr-auto gap-5">
             <p className="text-[23px]">Curretn Booked Tikets</p>
             <div className="flex justify-center items-center gap-5 rounded-md shadow-lg">
