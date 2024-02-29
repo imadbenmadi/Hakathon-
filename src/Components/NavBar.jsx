@@ -54,6 +54,12 @@ function NavBar() {
                                     {link.name}
                                 </Link>
                             ))}
+                            <button
+                                onClick={() => navigate("/Login")}
+                                className="w-32 p-3 bg-blue-500 text-white text-xl rounded-[8px] transition-all duration-300 hover:scale-105"
+                            >
+                                Login
+                            </button>
                         </div>
                         <div className="w-screen h-screen absolute top-0 left-0 z-30" onClick={() => setShowMenu(false)}></div>
                     </div>
