@@ -33,7 +33,7 @@ function Register() {
                     `الرجاء استخدام بريد إلكتروني آخر , ${response.data.message}`,
                     "error"
                 );
-            } else if (response.status == 200) {
+            } else if (response.status == 201) {
                 setVerifyId(response.data._id);
                 set_rigester_Date(response.data.Date);
                 setSucced_Register(true);
