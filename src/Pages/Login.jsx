@@ -51,7 +51,8 @@ function Login() {
         } catch (error) {
             setLoading(false);
             Swal.fire("خطأ!", "حدث خطأ ما", "error");
-        }finally{
+        } finally {
+            setLoading(false);
             setSubmitting(false);
         }
     }
