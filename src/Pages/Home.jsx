@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useRef } from "react";
 import homePage from "../assets/images/homePage.png";
+import { Link } from "react-router-dom";
+import { useInView } from "framer-motion";
 function Home() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
-    <div className="flex md:py-20   justify-between items-center w-screen max-w-[1300px] mx-auto max-md:flex-col">
-      <div className="w-[48%] max-md:w-screen  ">
+    <div
+      ref={ref}
+      className="flex md:py-20   justify-between items-center w-screen max-w-[1300px] mx-auto max-md:flex-col"
+    >
+      <div
+        style={{
+          opacity: isInView ? 1 : 0,
+          transform: isInView ? "none" : "translatex(-50px)",
+          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.02s",
+        }}
+        className="w-[48%] max-md:w-screen   "
+      >
         <img src={homePage} alt="" />
       </div>
-      <div className="w-[48%] max-md:w-screen  max-md:px-5   ">
+      <div
+        style={{
+          opacity: isInView ? 1 : 0,
+          transform: isInView ? "none" : "translatex(50px)",
+          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.02s",
+        }}
+        className="w-[48%] max-md:w-screen  max-md:px-5   "
+      >
         <div className="w-full text-right max-md:text-3xl  my-5 leading-30  text-blue-300 text-5xl font-extrabold font-['Cairo'] ">
           مشروع تحسين خدمات المستخدمين{" "}
         </div>
@@ -18,9 +39,12 @@ function Home() {
           الجديدة وايضا يمكنك ترك تعليق لنا في حالة لم تعجبك الخدمة{" "}
         </div>
 
-        <div className=" mx-auto float-right  my-10 py-5 px-10 w-fit text-white bg-blue-400 rounded-lg text-center text-xl font-bold">
+        <Link
+          to="/Tickets/Tech"
+          className=" mx-auto float-right  my-10 py-5 px-10 w-fit text-white bg-blue-400 rounded-lg text-center text-xl font-bold"
+        >
           جرب الأن
-        </div>
+        </Link>
       </div>
     </div>
   );
